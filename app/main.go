@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"log"
@@ -22,8 +23,12 @@ var (
 
 	h = promauto.NewHistogram(prometheus.HistogramOpts{
 		Name: "geekshubs_app_sample_histogram",
-		Help: "Sample metric for GeeksHubs devops bootcamp",
+		Help: "Sample histogram for GeeksHubs devops bootcamp",
 	})
+
+	d = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "geekshubs_app_sample_devices",
+		Help: "Sample counter opts devices for GeeksHubs devops bootcamp"}, []string{"device"})
 )
 
 func main() {
@@ -31,9 +36,11 @@ func main() {
 	go func() {
 		for {
 			rand.Seed(time.Now().UnixNano())
-			h.Observe(float64(rand.Intn(100 - 0 + 1) + 0))
+			h.Observe(float64(rand.Intn(100-0+1) + 0))
+			d.With(prometheus.Labels{"device":"/dev/sda"}).Inc()
 			c.Inc()
-			time.Sleep(5 * time.Second)
+			fmt.Print(".")
+			time.Sleep(1 * time.Second)
 		}
 	}()
 
