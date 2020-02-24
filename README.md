@@ -2,8 +2,6 @@
 
 Monitoring System build using **Prometheus** (with some companion modules like **CAAdvisor**, **Node Exporter**, **Alert Manager** and **MySQL Exporter**). It uses **Grafana** as the visualization dashboard.
 
-[![Actions Status](https://github.com/rubencougil/elastic-stack/workflows/Build/badge.svg)](https://github.com/rubencougil/elastic-stack/actions)
-
 ![Clase 3 - Practica Prometheus](https://user-images.githubusercontent.com/1073799/75155005-52976180-570f-11ea-9163-b7af42a03349.jpg)
 
 ## How to run it?
