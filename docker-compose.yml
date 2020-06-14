@@ -93,3 +93,20 @@ services:
       - "collect.perf_schema.tablelocks=true"
     depends_on:
       - db
+
+  pushgateway:
+    image: prom/pushgateway
+    ports:
+      - "9091:9091"
+    depends_on:
+      - prometheus
+
+  cortex:
+    image: cortexproject/cortex:v0.1.0
+    ports:
+      - "9009:9009"
+    command: "-config.file=/etc/single-process-config.yaml"
+    depends_on:
+      - prometheus
+    volumes:
+      - "./etc/cortex/single-process-config.yaml:/etc/single-process-config.yaml"

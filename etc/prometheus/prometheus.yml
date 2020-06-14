@@ -40,3 +40,9 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['docker.for.mac.localhost:9104']
+
+  - job_name: 'pushgateway'
+    scrape_interval: 10s
+    honor_labels: true
+    static_configs:
+      - targets: ['pushgateway:9091']
