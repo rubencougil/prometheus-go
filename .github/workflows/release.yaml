@@ -12,4 +12,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GOARCH: "386"
         GOOS: linux
-        PROJECT_ROOT: "./app"
