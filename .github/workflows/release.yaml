@@ -1,15 +1,17 @@
 on: release
 name: Build Release
 jobs:
-  release-linux-386:
-    name: release linux/386
+  generate:
+    name: Generate cross-platform builds
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: compile and release
-      uses: ngs/go-release.action@v1.0.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GOARCH: "386"
-        GOOS: linux
-        CMD_PATH: "app/main.go"
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Generate build files
+        uses: thatisuday/go-cross-build@v1
+        with:
+          platforms: 'linux/amd64, darwin/amd64, windows/amd64'
+          package: 'app'
+          name: 'app'
+          compress: 'true'
+          dest: 'dist'
