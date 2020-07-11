@@ -11,7 +11,7 @@ jobs:
         uses: thatisuday/go-cross-build@v1
         with:
           platforms: 'linux/amd64, darwin/amd64, windows/amd64'
-          package: 'app'
+          package: 'app/main.go'
           name: 'app'
           compress: 'true'
           dest: 'dist'
