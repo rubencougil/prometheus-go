@@ -12,3 +12,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GOARCH: "386"
         GOOS: linux
+        CMD_PATH: "app/main.go"
