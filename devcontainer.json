@@ -1,4 +1,0 @@
-{
-    "name": "Prometheus (Go)",
-    "dockerComposeFile": "docker-compose.yml"
-}
