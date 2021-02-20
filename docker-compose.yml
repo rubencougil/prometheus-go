@@ -10,25 +10,24 @@ services:
   prometheus:
     image: prom/prometheus:v2.1.0
     volumes:
-      - ./etc/prometheus/:/etc/prometheus/
-      - ./var/prometheus/prometheus_data:/prometheus
+      - "./etc/prometheus/:/etc/prometheus/"
+      - "./var/prometheus/prometheus_data:/prometheus"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
     ports:
-      - 9090:9090
-    depends_on:
-      - cadvisor
+      - "9090:9090"
 
   grafana:
     image: grafana/grafana
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
-      - ./var/grafana/grafana_data:/var/lib/grafana
-      - ./etc/grafana/provisioning/:/etc/grafana/provisioning/
+      - "./var/grafana/grafana_data:/var/lib/grafana"
+      - "./etc/grafana/provisioning/:/etc/grafana/provisioning/"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=foobar
       - GF_USERS_ALLOW_SIGN_UP=false
@@ -42,10 +41,10 @@ services:
     command:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
-      - --collector.filesystem.ignored-mount-points
+      - '--collector.filesystem.ignored-mount-points'
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
     ports:
-      - 9100:9100
+      - "9100:9100"
     depends_on:
       - prometheus
 

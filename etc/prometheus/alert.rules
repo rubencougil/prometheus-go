@@ -10,4 +10,12 @@ groups:
       severity: page
     annotations:
       summary: "FS usage is greater than 0"
+
+  - alert: go_routines
+    expr: avg(go_goroutines) > 60
+    for: 1m
+    labels:
+       severity: page
+    annotations:
+       summary: "Go Routines AVG grater than 60"
       
