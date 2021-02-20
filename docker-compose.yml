@@ -1,6 +1,12 @@
 version: '3.7'
 services:
 
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8081:8081"
+
   prometheus:
     image: prom/prometheus:v2.1.0
     volumes:

@@ -53,7 +53,7 @@ func main() {
 	go func() {
 		for {
 			// Example of metric push
-			err := push.New("http://localhost:9091", "geekshub_job").Collector(e).Add()
+			err := push.New("http://pushgateway:9091", "geekshub_job").Collector(e).Add()
 			if err != nil {
 				_ = fmt.Errorf("%v", err)
 			}
