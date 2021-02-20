@@ -12,7 +12,7 @@ groups:
       summary: "FS usage is greater than 0"
 
   - alert: go_routines
-    expr: avg(go_goroutines) > 60
+    expr: avg(go_goroutines) > 10
     for: 1m
     labels:
        severity: page
