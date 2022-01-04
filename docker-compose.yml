@@ -1,6 +1,5 @@
-version: '3.7'
+version: "3.7"
 services:
-
   app:
     build: .
     restart: always
@@ -8,16 +7,16 @@ services:
       - "8081:8081"
 
   prometheus:
-    image: prom/prometheus:v2.1.0
+    image: prom/prometheus:v2.32.1
     volumes:
       - "./etc/prometheus/:/etc/prometheus/"
       - "./var/prometheus/prometheus_data:/prometheus"
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
-      - '--web.enable-lifecycle'
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--web.enable-lifecycle"
     ports:
       - "9090:9090"
 
@@ -39,9 +38,9 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points'
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points"
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
     ports:
       - "9100:9100"
@@ -49,7 +48,7 @@ services:
       - prometheus
 
   cadvisor:
-    image: google/cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -65,29 +64,29 @@ services:
     volumes:
       - ./etc/alertmanager/:/etc/alertmanager/
     command:
-      - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/alertmanager'
+      - "--config.file=/etc/alertmanager/config.yml"
+      - "--storage.path=/alertmanager"
 
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: "db"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
     ports:
-      - '3306:3306'
+      - "3306:3306"
     volumes:
-      - './var/mysql:/var/lib/mysql'
-      - './ops/database:/docker-entrypoint-initdb.d'
-      - './var/log/mysql:/var/log/mysql'
+      - "./var/mysql:/var/lib/mysql"
+      - "./ops/database:/docker-entrypoint-initdb.d"
+      - "./var/log/mysql:/var/log/mysql"
 
   mysqld_exporter:
     image: prom/mysqld-exporter
     user: root
     ports:
-      - '9104:9104'
+      - "9104:9104"
     environment:
       - "DATA_SOURCE_NAME=root:password@(db:3306)/db"
       - "collect.info_schema.tablestats=true"
