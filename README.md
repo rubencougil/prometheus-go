@@ -5,7 +5,7 @@ Monitoring System build using **Prometheus** (with some companion modules like *
 [![Actions Status](https://github.com/rubencougil/prometheus-go/workflows/Build/badge.svg)](https://github.com/rubencougil/prometheus-go/actions)
 [![Build Release](https://github.com/rubencougil/prometheus-go/workflows/Build%20Release/badge.svg)](https://github.com/rubencougil/prometheus-go/actions)
 
-![Clase 3 - Practica Prometheus](https://user-images.githubusercontent.com/1073799/75155005-52976180-570f-11ea-9163-b7af42a03349.jpg)
+![Clase 3 - Practica Prometheus](https://user-images.githubusercontent.com/1073799/149613920-86665884-4f27-4236-b619-3a447c9f891a.png)
 
 ## How to run it?
 
