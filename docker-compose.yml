@@ -8,6 +8,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.32.1
+    user: root
     volumes:
       - "./etc/prometheus/:/etc/prometheus/"
       - "./var/prometheus/prometheus_data:/prometheus"
@@ -30,22 +31,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=foobar
       - GF_USERS_ALLOW_SIGN_UP=false
-
-  node-exporter:
-    image: prom/node-exporter
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - "--path.procfs=/host/proc"
-      - "--path.sysfs=/host/sys"
-      - "--collector.filesystem.ignored-mount-points"
-      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
-    ports:
-      - "9100:9100"
-    depends_on:
-      - prometheus
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
