@@ -7,7 +7,7 @@ route:
 global:
   # Also possible to place this URL in a file.
   # Ex: `slack_api_url_file: '/etc/alertmanager/slack_url'`
-  slack_api_url: 'XXXXXX'
+  slack_api_url: 'http://slack.me'
 
 receivers:
   - name: 'slack'

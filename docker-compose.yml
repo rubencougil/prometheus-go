@@ -8,6 +8,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.32.1
+    #image: prom/prometheus-linux-arm64:v2.40.2
     user: root
     volumes:
       - "./etc/prometheus/:/etc/prometheus/"
@@ -44,7 +45,7 @@ services:
       - 8080:8080
 
   alertmanager:
-    image: prom/alertmanager
+    image: prom/alertmanager:v0.24.0
     ports:
       - 9093:9093
     volumes:
@@ -55,6 +56,7 @@ services:
 
   db:
     image: mysql:5.7
+    #platform: linux/amd64
     restart: always
     environment:
       MYSQL_DATABASE: "db"
@@ -92,7 +94,8 @@ services:
       - prometheus
 
   cortex:
-    image: cortexproject/cortex:v0.1.0
+    #image: cortexproject/cortex:v0.1.0
+    image: ubuntu/cortex:latest
     ports:
       - "9009:9009"
     command: "-config.file=/etc/single-process-config.yaml"
