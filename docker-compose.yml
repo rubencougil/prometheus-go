@@ -8,6 +8,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.32.1
+    platform: linux/x86_64
     #image: prom/prometheus-linux-arm64:v2.40.2
     user: root
     volumes:
@@ -24,6 +25,7 @@ services:
 
   grafana:
     image: grafana/grafana
+    platform: linux/x86_64
     user: root
     ports:
       - "3000:3000"
@@ -36,6 +38,7 @@ services:
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
+    platform: linux/x86_64
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -46,6 +49,7 @@ services:
 
   alertmanager:
     image: prom/alertmanager:v0.24.0
+    platform: linux/x86_64
     ports:
       - 9093:9093
     volumes:
@@ -56,6 +60,7 @@ services:
 
   db:
     image: mysql:5.7
+    platform: linux/x86_64
     #platform: linux/amd64
     restart: always
     environment:
@@ -72,6 +77,7 @@ services:
 
   mysqld_exporter:
     image: prom/mysqld-exporter
+    platform: linux/x86_64
     user: root
     ports:
       - "9104:9104"
@@ -88,6 +94,7 @@ services:
 
   pushgateway:
     image: prom/pushgateway
+    platform: linux/x86_64
     ports:
       - "9091:9091"
     depends_on:
@@ -96,6 +103,7 @@ services:
   cortex:
     #image: cortexproject/cortex:v0.1.0
     image: ubuntu/cortex:latest
+    platform: linux/x86_64
     ports:
       - "9009:9009"
     command: "-config.file=/etc/single-process-config.yaml"
