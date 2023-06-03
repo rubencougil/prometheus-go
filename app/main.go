@@ -32,8 +32,8 @@ var (
 		Help: "Sample counter opts devices for GeeksHubs devops bootcamp"}, []string{"device"})
 
 	e = promauto.NewCounter(prometheus.CounterOpts{
-		Name: "geekshub_app_push_metric",
-		Help: "Sample metric for Geekshub course (push)",
+		Name: "geekshubs_app_push_metric",
+		Help: "Sample metric for Geekshubs course (push)",
 	})
 )
 
@@ -43,7 +43,7 @@ func main() {
 		for {
 			rand.Seed(time.Now().UnixNano())
 			h.Observe(float64(rand.Intn(100-0+1) + 0))
-			d.With(prometheus.Labels{"device":"/dev/sda"}).Inc()
+			d.With(prometheus.Labels{"device": "/dev/sda"}).Inc()
 			c.Inc()
 			fmt.Print(".")
 			time.Sleep(1 * time.Second)
