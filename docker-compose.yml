@@ -7,7 +7,7 @@ services:
       - "8081:8081"
 
   prometheus:
-    image: prom/prometheus:v2.32.1
+    image: prom/prometheus:v2.45.2
     #image: prom/prometheus-linux-arm64:v2.40.2
     user: root
     volumes:
