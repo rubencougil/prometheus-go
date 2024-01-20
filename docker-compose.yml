@@ -65,8 +65,9 @@ services:
     user: root
     ports:
       - "9104:9104"
+    volumes:
+      - "./etc/mysqld_exporter/.my.cnf:/.my.cnf"
     environment:
-      - "DATA_SOURCE_NAME=root:password@(db:3306)/db"
       - "collect.info_schema.tablestats=true"
       - "collect.info_schema.userstats=true"
       - "collect.info_schema.query_response_time=true"
