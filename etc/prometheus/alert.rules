@@ -38,4 +38,13 @@ groups:
       summary: Container Memory usage (instance {{ $labels.instance }})
       description: "Container Memory usage is above 0%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
+  - alert: MysqlDown
+    expr: mysql_up == 0
+    for: 0m
+    labels:
+      severity: critical
+    annotations:
+      summary: MySQL down (instance {{ $labels.instance }})
+      description: "MySQL instance is down on {{ $labels.instance }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
       
