@@ -2,17 +2,8 @@ groups:
 - name: example
   rules:
 
-  # FS Usage gt 0
-  - alert: fs_usage_gt_zero
-    expr: avg(container_fs_usage_bytes) > 0
-    for: 2m
-    labels:
-      severity: page
-    annotations:
-      summary: "FS usage is greater than 0"
-
   # Go routines gt 10
-  - alert: go_routines
+  - alert: goRoutinesGt10
     expr: avg(go_goroutines) > 10
     for: 1m
     labels:
@@ -21,22 +12,13 @@ groups:
        summary: "Go Routines AVG grater than 10"
 
   # Go routines gt 100000
-  - alert: go_routines_gt_100000
+  - alert: goRoutinesGt100000
     expr: avg(go_goroutines) > 100000
     for: 1m
     labels:
        severity: page
     annotations:
        summary: "Go Routines AVG grater than 100000"
-
-  - alert: ContainerMemoryUsage
-    expr: (sum(container_memory_working_set_bytes{name!=""}) BY (instance, name) / sum(container_spec_memory_limit_bytes > 0) BY (instance, name) * 100) > 0
-    for: 1m
-    labels:
-      severity: warning
-    annotations:
-      summary: Container Memory usage (instance {{ $labels.instance }})
-      description: "Container Memory usage is above 0%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
   - alert: MysqlDown
     expr: mysql_up == 0
