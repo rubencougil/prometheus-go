@@ -20,3 +20,7 @@ http://localhost:3000
 User: admin
 Pass: foobar
 ```
+
+## Cortex
+
+Data Source URL for Grafana: http://cortex:9009/api/prom
